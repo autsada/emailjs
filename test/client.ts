@@ -90,6 +90,21 @@ test('client deduplicates recipients', (t) => {
 	t.is(stack.to[0].address, 'gannon@gmail.com');
 });
 
+test('client accepts array recipients', (t) => {
+	const msg = {
+		from: 'zelda@gmail.com',
+		to: ['gannon1@gmail.com'],
+		cc: ['gannon2@gmail.com'],
+		bcc: ['gannon3@gmail.com'],
+	};
+	const stack = new SMTPClient({}).createMessageStack(new Message(msg));
+	t.true(stack.to.length === 3);
+	t.deepEqual(
+		stack.to.map((x) => x.address),
+		['gannon1@gmail.com', 'gannon2@gmail.com', 'gannon3@gmail.com']
+	);
+});
+
 test.cb('client rejects message without `from` header', (t) => {
 	const msg = {
 		subject: 'this is a test TEXT message from emailjs',

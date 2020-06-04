@@ -60,15 +60,20 @@ export interface MessageAttachment extends AlternateMessageAttachment {
 }
 
 export interface MessageHeaders {
-	[index: string]: string | null | MessageAttachment | MessageAttachment[];
+	[index: string]:
+		| string
+		| string[]
+		| null
+		| MessageAttachment
+		| MessageAttachment[];
 	'content-type': string;
 	'message-id': string;
 	'return-path': string | null;
 	date: string;
 	from: string;
-	to: string;
-	cc: string;
-	bcc: string;
+	to: string | string[];
+	cc: string | string[];
+	bcc: string | string[];
 	subject: string;
 	text: string | null;
 	attachment: MessageAttachment | MessageAttachment[];
@@ -192,8 +197,11 @@ export class Message {
 			callback(false, 'Message must have a `from` header');
 		} else if (
 			typeof this.header.to !== 'string' &&
+			Array.isArray(this.header.to) === false &&
 			typeof this.header.cc !== 'string' &&
-			typeof this.header.bcc !== 'string'
+			Array.isArray(this.header.cc) === false &&
+			typeof this.header.bcc !== 'string' &&
+			Array.isArray(this.header.bcc) === false
 		) {
 			callback(
 				false,

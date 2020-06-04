@@ -465,24 +465,85 @@ test.cb('message validation fails without `to`, `cc`, or `bcc` header', (t) => {
 	});
 });
 
-test.cb('message validation succeeds with only `cc` recipient header', (t) => {
-	const msg = new Message({
-		from: 'piglet@gmail.com',
-		cc: 'pooh@gmail.com',
-	});
-	msg.valid((isValid) => {
-		t.true(isValid);
-		t.end();
-	});
-});
+test.cb(
+	'message validation succeeds with only `to` recipient header (string)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			to: 'pooh@gmail.com',
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);
+test.cb(
+	'message validation succeeds with only `to` recipient header (array)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			to: ['pooh@gmail.com'],
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);
 
-test.cb('message validation succeeds with only `bcc` recipient header', (t) => {
-	const msg = new Message({
-		from: 'piglet@gmail.com',
-		bcc: 'pooh@gmail.com',
-	});
-	msg.valid((isValid) => {
-		t.true(isValid);
-		t.end();
-	});
-});
+test.cb(
+	'message validation succeeds with only `cc` recipient header (string)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			cc: 'pooh@gmail.com',
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);
+
+test.cb(
+	'message validation succeeds with only `cc` recipient header (array)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			cc: ['pooh@gmail.com'],
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);
+
+test.cb(
+	'message validation succeeds with only `bcc` recipient header (string)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			bcc: 'pooh@gmail.com',
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);
+
+test.cb(
+	'message validation succeeds with only `bcc` recipient header (array)',
+	(t) => {
+		const msg = new Message({
+			from: 'piglet@gmail.com',
+			bcc: ['pooh@gmail.com'],
+		});
+		msg.valid((isValid) => {
+			t.true(isValid);
+			t.end();
+		});
+	}
+);

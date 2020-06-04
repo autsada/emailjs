@@ -96,7 +96,10 @@ export class SMTPClient {
 			stack.to = addressparser(message.header.to);
 		}
 
-		if (typeof message.header.cc === 'string') {
+		if (
+			typeof message.header.cc === 'string' ||
+			Array.isArray(message.header.cc)
+		) {
 			stack.to = stack.to.concat(
 				addressparser(message.header.cc).filter(
 					(x) => stack.to.some((y) => y.address === x.address) === false
@@ -104,7 +107,10 @@ export class SMTPClient {
 			);
 		}
 
-		if (typeof message.header.bcc === 'string') {
+		if (
+			typeof message.header.bcc === 'string' ||
+			Array.isArray(message.header.bcc)
+		) {
 			stack.to = stack.to.concat(
 				addressparser(message.header.bcc).filter(
 					(x) => stack.to.some((y) => y.address === x.address) === false
@@ -113,7 +119,8 @@ export class SMTPClient {
 		}
 
 		if (
-			typeof message.header['return-path'] === 'string' &&
+			(typeof message.header['return-path'] === 'string' ||
+				Array.isArray(message.header['return-path'])) &&
 			message.header['return-path'].length > 0
 		) {
 			const parsedReturnPath = addressparser(message.header['return-path']);
