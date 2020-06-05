@@ -6,7 +6,7 @@ import type { Duplex } from 'stream';
 import addressparser from 'addressparser';
 import { mimeWordEncode } from 'emailjs-mime-codec';
 
-import { getRFC2822Date } from './date';
+import { getRFC2822Date } from './date.ts';
 
 const CRLF = '\r\n' as const;
 

@@ -1,8 +1,8 @@
 import addressparser from 'addressparser';
-import { Message } from './message';
-import type { MessageAttachment, MessageHeaders } from './message';
-import { SMTPConnection, SMTPState } from './connection';
-import type { SMTPConnectionOptions } from './connection';
+import { Message } from './message.ts';
+import type { MessageAttachment, MessageHeaders } from './message.ts';
+import { SMTPConnection, SMTPState } from './connection.ts';
+import type { SMTPConnectionOptions } from './connection.ts';
 
 export interface MessageStack {
 	callback: (error: Error | null, message: Message) => void;

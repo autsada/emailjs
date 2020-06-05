@@ -1,4 +1,4 @@
-import { SMTPError, SMTPErrorStates } from './error';
+import { SMTPError, SMTPErrorStates } from './error.ts';
 import type { Socket } from 'net';
 import type { TLSSocket } from 'tls';
 
