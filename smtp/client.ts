@@ -1,4 +1,4 @@
-import addressparser from 'addressparser';
+import addressparser from './typings.d.ts';
 import { Message } from './message.ts';
 import type { MessageAttachment, MessageHeaders } from './message.ts';
 import { SMTPConnection, SMTPState } from './connection.ts';
